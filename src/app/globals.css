@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@100..800&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-brand-bg-primary: #020408;
+  --color-brand-bg-secondary: #071018;
+  --color-brand-bg-tertiary: #0C1624;
+  
+  --color-brand-surface-1: #111827;
+  --color-brand-surface-2: #152235;
+  
+  --color-brand-accent-base: #00FF66;
+  --color-brand-accent-dim: #00D95A;
+  --color-brand-accent-bright: #36FF94;
+  
+  --color-brand-text-1: #FFFFFF;
+  --color-brand-text-2: #D6E2F0;
+  --color-brand-text-3: #8B9BB2;
+  
+  --color-brand-border: rgba(255,255,255,0.08);
+  --color-brand-glow: rgba(0,255,102,0.35);
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg-primary text-brand-text-1 font-sans antialiased overflow-x-hidden selection:bg-brand-accent-base selection:text-black;
+  }
+}
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(0, 255, 102, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 255, 102, 0.03) 1px, transparent 1px);
+  }
+  
+  .bg-grid-pattern-light {
+    background-size: 20px 20px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  }
+
+  /* Aurora Background effect */
+  .aurora-bg {
+    background-image: 
+      radial-gradient(ellipse at 100% 0%, rgba(0, 255, 102, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 0% 100%, rgba(54, 255, 148, 0.1) 0%, transparent 50%);
+    animation: aurora 10s ease infinite alternate;
+  }
+  @keyframes aurora {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+  }
+
+  @keyframes shiny {
+    0% { background-position: 0% center; }
+    100% { background-position: -200% center; }
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px var(--color-brand-glow), 0 0 20px var(--color-brand-glow);
+  }
+  
+  .box-glow {
+    box-shadow: 0 0 15px var(--color-brand-glow), inset 0 0 10px rgba(0,255,102,0.05);
+  }
+
+  .scanlines {
+    background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0),
+      rgba(255,255,255,0) 50%,
+      rgba(0,0,0,0.2) 50%,
+      rgba(0,0,0,0.2)
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+  }
+
+  .clip-edges {
+    clip-path: polygon(
+      0% 0%, 
+      calc(100% - 10px) 0%, 
+      100% 10px, 
+      100% 100%, 
+      10px 100%, 
+      0% calc(100% - 10px)
+    );
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-brand-bg-primary;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-surface-2 border border-brand-border rounded-full hover:bg-brand-accent-base/50 transition-colors;
+}
