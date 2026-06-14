@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ProtocolStats {
+  id           String   @id @default(uuid())
+  tvl          Float
+  dynaPrice    Float
+  totalStakers Int
+  dynaStaked   Float
+  lpStaked     Float
+  updatedAt    DateTime @updatedAt
+}
+
+model StakeEvent {
+  id              String   @id @default(uuid())
+  userAddress     String
+  amount          Float
+  poolType        String   // "YIELD" or "LP"
+  transactionHash String   @unique
+  createdAt       DateTime @default(now())
+}
