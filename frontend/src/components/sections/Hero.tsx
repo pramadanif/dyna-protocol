@@ -3,6 +3,8 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { NeonButton, TypewriterText, ShinyText } from '../ui';
 import { Terminal, Database, Activity, ChevronRight } from 'lucide-react';
 
+import { AuroraBackground } from '../ui/AuroraBackground';
+
 export const Hero = () => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, 200]);
@@ -31,16 +33,8 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[100svh] flex items-center pt-24 pb-20 overflow-hidden bg-brand-bg-primary aurora-bg">
-      {/* Complex Animated Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-grid-pattern opacity-30" />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-accent-base/10 rounded-full blur-[150px] mix-blend-screen animate-pulse" style={{ animationDuration: '8s' }} />
-        <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px] mix-blend-screen animate-pulse" style={{ animationDuration: '10s' }} />
-        <div className="absolute inset-0 scanlines opacity-40" />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
+    <AuroraBackground>
+      <div className="container mx-auto px-6 relative z-10 w-full pt-24 pb-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           
           {/* Text Content */}
@@ -171,6 +165,6 @@ export const Hero = () => {
           </motion.div>
         </div>
       </div>
-    </section>
+    </AuroraBackground>
   );
 };
